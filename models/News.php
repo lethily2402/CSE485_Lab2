@@ -5,6 +5,23 @@ class News
     private $title;
     private $content;
     private $image;
+    private $categoryId;
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryId()
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @param mixed $categoryId
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->categoryId = $categoryId;
+    }
 
     public function __construct($id, $title, $content, $image)
     {
