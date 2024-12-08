@@ -7,7 +7,7 @@ $db = $database->getConnection();
 
 $controller = new NewsController($db);
 
-
+// PHP 5.x compatible version of null coalescing operator
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
@@ -24,6 +24,10 @@ switch ($action) {
     case 'show':
         $controller->show($id);
         break;
+    case 'search':
+        $controller->search();
+        break;
+
     default:
         $controller->index();
         break;

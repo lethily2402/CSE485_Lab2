@@ -1,5 +1,9 @@
 <h1>All News</h1>
 <a href="?action=create">Create News</a>
+<form action="?action=search" method="POST">
+    <input type="text" name="keyword" placeholder="Search news..." required>
+    <button type="submit">Search</button>
+</form>
 <ul>
     <?php
     require_once 'services/NewsService.php';
