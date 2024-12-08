@@ -51,4 +51,11 @@ class NewsController
         $this->newsService->deleteNews($id);
         header("Location: index.php");
     }
+    public function search()
+    {
+        $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : '';
+        $newsList = $this->newsService->searchNews($keyword);
+        require 'views/news/search_results.php';
+    }
+
 }

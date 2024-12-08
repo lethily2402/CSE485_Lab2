@@ -3,7 +3,7 @@ class Database {
     private $host = 'localhost';
     private $db_name = 'tintuc'; 
     private $username = 'root';
-    private $password = ''; 
+    private $password = '1111';
     public $conn;
 
     public function getConnection() {

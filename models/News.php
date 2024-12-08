@@ -6,6 +6,8 @@ class News
     private $content;
     private $image;
     private $categoryId;
+    private $categoryName;
+    private $createdAt;
 
     /**
      * @return mixed
@@ -47,5 +49,24 @@ class News
     }
     public function setTitle($newTitle){
         $this->title = $newTitle;
+    }
+    public function setCategoryName($categoryName)
+    {
+        $this->categoryName = $categoryName;
+    }
+
+    public function getCategoryName()
+    {
+        return $this->categoryName;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

@@ -30,22 +30,29 @@ class NewsService
 
     public function getNewsById($id)
     {
-        $query = "SELECT * FROM news WHERE id = :id";
+        $query = "SELECT n.*, c.name as category_name 
+              FROM news n
+              LEFT JOIN categories c ON n.category_id = c.id
+              WHERE n.id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-            return new News(
+            $news = new News(
                 $row['id'],
                 $row['title'],
                 $row['content'],
                 $row['image']
             );
+            $news->setCategoryName($row['category_name']);
+            $news->setCreatedAt($row['created_at']);
+            return $news;
         }
         return null;
     }
+
 
     public function createNews($title, $content, $image, $category_id)
     {
@@ -83,4 +90,30 @@ class NewsService
 
         return $stmt->execute();
     }
+    public function searchNews($keyword)
+    {
+        $query = "SELECT n.*, c.name as category_name 
+              FROM news n
+              LEFT JOIN categories c ON n.category_id = c.id
+              WHERE n.title LIKE :keyword OR n.content LIKE :keyword";
+        $stmt = $this->conn->prepare($query);
+        $keyword = '%' . $keyword . '%';
+        $stmt->bindParam(':keyword', $keyword);
+        $stmt->execute();
+
+        $newsList = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $news = new News(
+                $row['id'],
+                $row['title'],
+                $row['content'],
+                $row['image']
+            );
+            $news->setCategoryName($row['category_name']);
+            $news->setCreatedAt($row['created_at']);
+            $newsList[] = $news;
+        }
+        return $newsList;
+    }
+
 }
