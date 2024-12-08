@@ -5,7 +5,6 @@ class Database {
     private $username = 'root';
     private $password = '1111';
     public $conn;
-
     public function getConnection() {
         $this->conn = null;
         try {
@@ -17,10 +16,8 @@ class Database {
         return $this->conn;
     }
 }
-
 $database = new Database();
 $conn = $database->getConnection();
-
 if ($conn) {
     echo "Database connection successful!";
 } else {
