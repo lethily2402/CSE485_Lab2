@@ -1,9 +1,9 @@
 <?php
 class Database {
     private $host = 'localhost';
-    private $db_name = 'tintuc';
+    private $db_name = 'tintuc'; 
     private $username = 'root';
-    private $password = '1111';
+    private $password = ''; 
     public $conn;
 
     public function getConnection() {
@@ -17,5 +17,4 @@ class Database {
         return $this->conn;
     }
 }
-
 
