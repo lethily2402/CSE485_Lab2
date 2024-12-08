@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao Diện Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Logo</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#">Giới Thiệu</a></li>
+                <li><a href="#">Dịch Vụ</a></li>
+                <li><a href="#">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <section class="intro">
+            <h2>Chào Mừng Đến Với Website Của Chúng Tôi!</h2>
+            <p>Đây là phần nội dung giới thiệu của website. Chúng tôi cung cấp dịch vụ tốt nhất cho bạn.</p>
+        </section>
+        
+        <section class="features">
+            <div class="feature">
+                <h3>Dịch Vụ 1</h3>
+                <p>Thông tin về dịch vụ 1.</p>
+            </div>
+            <div class="feature">
+                <h3>Dịch Vụ 2</h3>
+                <p>Thông tin về dịch vụ 2.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Công ty XYZ. Tất cả quyền lợi được bảo lưu.</p>
+    </footer>
+</body>
+</html>
