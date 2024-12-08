@@ -75,12 +75,10 @@ class NewsService
         return $stmt->execute();
     }
 
-    public function deleteNews($id)
-    {
+    public function deleteNews($id) {
         $query = "DELETE FROM news WHERE id = :id";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id);
-
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
 }
