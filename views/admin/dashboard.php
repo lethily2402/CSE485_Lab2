@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // Kiểm tra nếu người dùng chưa đăng nhập
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 1) {
     header("Location: login.php");

@@ -1,26 +1,33 @@
 <?php
 session_start();
+require_once '../../models/User.php';
+require_once '../../config/Database.php';
 
-// Định nghĩa tài khoản quản trị viên mặc định
-$adminAccount = [
-    'username' => 'admin',
-    'password' => 'admin123', // Mật khẩu không mã hóa
-    'role' => 1 // Quản trị viên
-];
+// Tạo kết nối database
+$database = new Database();
+$db = $database->getConnection();
 
-// Kiểm tra đăng nhập
+// Khởi tạo model User
+$userModel = new User($db);
+
+$error = null;
+
+if (isset($_SESSION['username'])) {
+    header("Location: dashboard.php");
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Kiểm tra tên đăng nhập và mật khẩu
-    if ($username === $adminAccount['username'] && $password === $adminAccount['password']) {
-        // Lưu thông tin đăng nhập vào session
-        $_SESSION['user_id'] = 1; // ID giả định
-        $_SESSION['username'] = $username;
-        $_SESSION['role'] = $adminAccount['role'];
+    // Kiểm tra thông tin người dùng
+    $user = $userModel->getUserByUsername($username);
 
-        // Điều hướng đến trang dashboard
+    if ($user && ($password == $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['ROLE'];
         header("Location: dashboard.php");
         exit;
     } else {
@@ -30,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -132,18 +140,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <h2>Đăng nhập quản trị viên</h2>
-        
-        <?php if (isset($error)) { echo "<p class='error'>$error</p>"; } ?>
+
+        <?php if (isset($error)) {
+            echo "<p class='error'>$error</p>";
+        } ?>
 
         <form method="POST" action="?controller=admin&action=login" class="login-form">
             <div class="form-group">
                 <label for="username">Tên đăng nhập</label>
                 <input type="text" name="username" placeholder="Nhập tên đăng nhập" required />
             </div>
-            
+
             <div class="form-group">
                 <label for="password">Mật khẩu</label>
                 <input type="password" name="password" placeholder="Nhập mật khẩu" required />
@@ -155,4 +166,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </body>
+
 </html>
