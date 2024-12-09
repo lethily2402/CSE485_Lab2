@@ -28,23 +28,27 @@ if (isset($_GET['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $title = $_POST['title'];
         $content = $_POST['content'];
-        $image = $_FILES['image']['name'];
         $category_id = $_POST['category_id'];
 
-        // If an image is uploaded, move it to the uploads folder
-        if ($image) {
+        // Image processing
+        if (!empty($_FILES['image']['name'])) {
+            $image = $_FILES['image']['name'];
             move_uploaded_file($_FILES['image']['tmp_name'], './uploads/' . $image);
         } else {
-            $image = $news->getImage(); // Keep the existing image if no new one is uploaded
+            $image = $_POST['current_image']; // Keep the current image if no new image is uploaded
         }
 
+
+        // Update the news
         $result = $newsService->updateNews($id, $title, $content, $image, $category_id);
         if ($result) {
-            echo "News updated successfully!";
+            header("Location: index.php");
+            exit;
         } else {
             echo "Error updating news!";
         }
     }
+
 } else {
     echo "No news ID provided!";
     exit;
