@@ -67,99 +67,6 @@ if (isset($_GET['id'])) {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit News</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-         body {
-            background-color: #f8f9fa;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container-wrapper {
-            width: 100%;
-            min-height: 90vh;
-            background-color: #343a40;
-            color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #343a40;
-            padding-top: 20px;
-            height: 100%;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            background-color: #343a40;
-            display: block;
-        }
-
-        .sidebar a:hover {
-            background-color: #004091;
-        }
-
-        .main-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .content-container {
-            margin: 20px auto;
-            width: 90%;
-            max-width: 1200px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .header-title {
-            font-size: 24px;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .header {
-            background-color: #343a40;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 60px;
-            color: white;
-        }
-
-        .header-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-menu {
-            position: relative;
-        }
 
         .user-menu ul {
             display: none;
@@ -254,4 +161,4 @@ if (isset($_GET['id'])) {
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>  
+</html>
