@@ -1,10 +1,16 @@
 <?php
-// Bắt đầu phiên làm việc
+// Bắt đầu hoặc tiếp tục phiên làm việc
 session_start();
+
+// Kiểm tra xem người dùng đã đăng nhập chưa
+if (!isset($_SESSION['user_id'])) {
+    // Nếu chưa đăng nhập, chuyển hướng tới trang đăng nhập
+    header("Location: /TH2/views/admin/login.php");
+    exit; // Dừng tiếp tục xử lý file hiện tại
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -144,7 +150,6 @@ session_start();
         }
     </style>
 </head>
-
 <body>
     <div class="container-wrapper">
         <!-- Sidebar -->
@@ -156,7 +161,7 @@ session_start();
         <div class="main-content">
             <!-- Header -->
             <div class="header">
-                <div class="header-title">Xin chào ,</div>
+                <div class="header-title">Quản lý tin tức</div>
                 <div class="header-right">
                     <span><?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Guest'; ?></span>
                     <div class="user-menu">
@@ -211,7 +216,7 @@ session_start();
                                             <a class="btn btn-sm btn-outline-primary" href="?action=show&id=<?= $news->getId() ?>"><i class="fa-solid fa-eye"></i></a>
                                             <a class="btn btn-sm btn-outline-primary" href="?action=edit&id=<?= $news->getId() ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                             <a class="btn btn-sm btn-outline-danger" href="#" onclick="confirmDelete(<?= $news->getId() ?>)"><i class="fa-solid fa-trash"></i></a>
-                                            </td>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -229,14 +234,13 @@ session_start();
                 window.location.href = 'logout.php';
             }
         }
+
         function confirmDelete(newsId) {
-        const userConfirmed = confirm('Bạn có chắc chắn muốn xóa bài viết này không?');
-        if (userConfirmed) {
-            window.location.href = `delete.php?id=${newsId}`;
+            const userConfirmed = confirm('Bạn có chắc chắn muốn xóa bài viết này không?');
+            if (userConfirmed) {
+                window.location.href = `delete.php?id=${newsId}`;
+            }
         }
-    }
-</script>
     </script>
 </body>
-
 </html>
