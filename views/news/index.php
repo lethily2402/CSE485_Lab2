@@ -5,7 +5,7 @@ session_start();
 // Kiểm tra xem người dùng đã đăng nhập chưa
 if (!isset($_SESSION['user_id'])) {
     // Nếu chưa đăng nhập, chuyển hướng tới trang đăng nhập
-    header("Location: /TH2/views/admin/login.php");
+    header("Location: CSE485_TH2/views/admin/login.php");
     exit; // Dừng tiếp tục xử lý file hiện tại
 }
 ?>
